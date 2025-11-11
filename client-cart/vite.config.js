@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { federation } from '@module-federation/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     target: 'chrome89',
@@ -26,6 +25,14 @@ export default defineConfig({
       shared: {
         svelte: {
           singleton: true,
+        },
+        react: {
+          singleton: true,
+          requiredVersion: '^19.2.0',
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: '^19.2.0',
         },
       },
     }),

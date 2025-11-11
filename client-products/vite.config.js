@@ -7,6 +7,9 @@ export default defineConfig({
     target: 'chrome89',
   },
   plugins: [
+    react({
+      jsxRuntime: 'automatic'
+    }),
     federation({
       filename: 'remoteEntry.js',
       name: 'products',
@@ -16,13 +19,14 @@ export default defineConfig({
       shared: {
         react: {
           singleton: true,
+          requiredVersion: '^19.2.0',
         },
         'react-dom': {
           singleton: true,
+          requiredVersion: '^19.2.0',
         },
       },
     }),
-    react(),
   ],
   server: {
     port: 3001,

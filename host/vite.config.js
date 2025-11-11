@@ -13,16 +13,12 @@ export default defineConfig({
       remotes: {
         products: {
           type: 'module',
-          name: 'products',
-          entry: 'http://localhost:3001/mf-manifest.json',
-          entryGlobalName: 'products',
+          entry: 'http://localhost:3001/remoteEntry.js',
           shareScope: 'default',
         },
         cart: {
           type: 'module',
-          name: 'cart',
-          entry: 'http://localhost:3002/mf-manifest.json',
-          entryGlobalName: 'cart',
+          entry: 'http://localhost:3002/remoteEntry.js',
           shareScope: 'default',
         },
       },

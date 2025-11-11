@@ -16,7 +16,7 @@ const fetchProducts = async () => {
   ]
 }
 
-function ProductList() {
+const ProductList = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
 
