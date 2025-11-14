@@ -50,4 +50,5 @@ __mf__virtual/
 *.mf-manifest.json
 .vite/
 dist/
-.__mf__temp/
+.__mf__temp
+/.__mf__temp/

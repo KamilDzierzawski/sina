@@ -1,5 +1,5 @@
 import React from 'react';
-import { cartStore } from '../../store/cartStore.jsx';
+import { cartStore } from '../../store/cartStore';
 
 const products = [
   { id: 1, name: 'Laptop', price: 2500 },
@@ -41,13 +41,13 @@ const styles = {
 };
 
 export const ProductList = () => {
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product: any) => {
     cartStore.addProduct(product);
   };
 
   return (
     <div style={styles.container}>
-      <h2>📦 Lista Produktów (App4 - React)</h2>
+      <h2>📦 Lista Produktów (React - Products)</h2>
       <ul style={styles.list}>
         {products.map((product) => (
           <li key={product.id} style={styles.item}>

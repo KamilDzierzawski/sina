@@ -1,22 +1,17 @@
 <script lang="ts">
   import Cart from './lib/Cart.svelte';
   import WrapperReactSvelte from './lib/WrapperReactSvelte.svelte';
-
-  // Only show products when running standalone
-  const isStandalone = typeof window !== 'undefined' && window.location.port === '3002';
 </script>
 
 <main>
   <h1>🛍️ Sklep - Module Federation Demo</h1>
   
   <div class="container">
-    {#if isStandalone}
-      <div class="section">
-        <WrapperReactSvelte
-          dynamicImportPromise={import('products/ProductList')}
-        />
-      </div>
-    {/if}
+    <div class="section">
+      <WrapperReactSvelte
+        dynamicImportPromise={import('products/ProductList')}
+      />
+    </div>
 
     <div class="section">
       <Cart />
