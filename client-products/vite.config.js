@@ -8,14 +8,15 @@ export default defineConfig({
   },
   plugins: [
     react({
-      jsxRuntime: 'automatic'
+      jsxRuntime: 'classic',
     }),
     federation({
       filename: 'remoteEntry.js',
       name: 'products',
       exposes: {
-        './ProductList': './src/ProductList.jsx',
-      },
+                './ProductList': './src/components/ProductList/ProductListForSvelte.js',
+                './cartStore': './src/store/index.jsx',
+            },
       shared: {
         react: {
           singleton: true,
@@ -29,7 +30,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: 3001,
+    port: 3004,
     cors: true,
   },
 })

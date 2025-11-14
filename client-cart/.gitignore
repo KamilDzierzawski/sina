@@ -1,24 +1,53 @@
-# Logs
-logs
-*.log
+# Vite / Node / build artifacts
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.vscode/
+!.vscode/extensions.json
+.DS_Store
+.idea/
+.cache/
+coverage/
+
+# Env / logs
+.env*
+*.local
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Module Federation temp / prebuild / virtual files
+__mf__temp/
+**/__mf__temp/
+__mf__virtual/
+**/__mf__virtual/
+*.mf-manifest.json
+__mf__prebuild__*/
+**/__mf__prebuild__*/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+# Editor / OS
 *.suo
-*.ntvs*
-*.njsproj
+*.swp
 *.sln
-*.sw?
+Thumbs.db
+
+# Module Federation and Vite artifacts
+__mf__temp/
+**/__mf__temp/
+__mf__virtual/
+**/__mf__virtual/
+*.mf-manifest.json
+.vite/
+dist/
+node_modules/
+
+# Module Federation and Vite artifacts
+__mf__temp/
+**/__mf__temp/
+__mf__virtual/
+**/__mf__virtual/
+*.mf-manifest.json
+.vite/
+dist/
+.__mf__temp/

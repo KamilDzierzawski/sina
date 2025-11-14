@@ -1,8 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { federation } from '@module-federation/vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { federation } from '@module-federation/vite';
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     target: 'chrome89',
@@ -13,7 +12,7 @@ export default defineConfig({
       remotes: {
         products: {
           type: 'module',
-          entry: 'http://localhost:3001/remoteEntry.js',
+          entry: 'http://localhost:3004/remoteEntry.js',
           shareScope: 'default',
         },
         cart: {
@@ -37,4 +36,4 @@ export default defineConfig({
     port: 3000,
     cors: true,
   },
-})
+});
