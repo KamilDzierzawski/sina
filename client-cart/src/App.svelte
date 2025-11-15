@@ -4,16 +4,17 @@
 </script>
 
 <main>
-  <h1>🛍️ Sklep - Module Federation Demo</h1>
+  <h1>🛍️ Module Federation Store Demo</h1>
+  <p class="subtitle">React Products + Svelte Shopping Cart</p>
   
   <div class="container">
-    <div class="section">
+    <div class="products-section">
       <WrapperReactSvelte
         dynamicImportPromise={import('products/ProductList')}
       />
     </div>
 
-    <div class="section">
+    <div class="cart-section">
       <Cart />
     </div>
   </div>
@@ -29,22 +30,38 @@
   h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666;
     margin-bottom: 2rem;
+    font-size: 1.1rem;
   }
 
   .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .section {
-    min-height: 200px;
+  .products-section {
+    width: 100%;
+  }
+
+  .cart-section {
+    width: 100%;
   }
 
   @media (max-width: 768px) {
-    .container {
-      grid-template-columns: 1fr;
+    h1 {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
     }
   }
 </style>

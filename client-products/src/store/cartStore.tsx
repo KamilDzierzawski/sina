@@ -15,6 +15,16 @@ class CartStore {
     this.notifyListeners();
   }
 
+  removeProduct(index: number) {
+    this.cart.splice(index, 1);
+    this.notifyListeners();
+  }
+
+  clearCart() {
+    this.cart = [];
+    this.notifyListeners();
+  }
+
   getCart() {
     return [...this.cart];
   }
