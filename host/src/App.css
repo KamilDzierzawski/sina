@@ -23,25 +23,23 @@ header p {
 }
 
 main {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 .microfrontend-container {
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 24px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .products-section {
-  min-width: 0;
+  width: 100%;
 }
 
 .cart-section {
-  position: sticky;
-  top: 20px;
+  width: 100%;
 }
 
 .loading {
@@ -85,11 +83,7 @@ main {
 
 @media (max-width: 1024px) {
   .microfrontend-container {
-    grid-template-columns: 1fr;
-  }
-
-  .cart-section {
-    position: static;
+    flex-direction: column;
   }
 }
 

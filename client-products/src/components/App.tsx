@@ -4,7 +4,7 @@ import { ProductList } from './ProductList/ProductList';
 export const App = () => {
   return (
     <>
-      <div>App 4 - Lista Produktów</div>
+      <div>Products Microfrontend - Standalone</div>
       <ProductList />
     </>
   );

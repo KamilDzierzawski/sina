@@ -14,15 +14,13 @@ function App() {
 
     const loadMicrofrontends = async () => {
       try {
-        // Wait for runtime to be ready
         await new Promise((resolve) => setTimeout(resolve, 100));
 
-        // Load products (React wrapper that returns DOM renderer)
+        // Load products (React)
         const productsModule = await import('products/ProductList');
         const productsFactory = productsModule.default || productsModule;
 
         if (typeof productsFactory === 'function' && productsRef.current) {
-          // Factory returns (targetDiv) => { render, destroy }
           productsWrapper = productsFactory(productsRef.current);
           if (productsWrapper && typeof productsWrapper.render === 'function') {
             productsWrapper.render({});
@@ -31,7 +29,7 @@ function App() {
           }
         }
 
-        // Load cart (Svelte component)
+        // Load cart (Svelte)
         const { default: Cart } = await import('cart/Cart');
         if (cartRef.current) {
           cartComponent = new Cart({
@@ -48,7 +46,6 @@ function App() {
 
     loadMicrofrontends();
 
-    // Cleanup
     return () => {
       try {
         if (productsWrapper?.destroy) {
@@ -66,34 +63,36 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🛍️ Sklep - Host Application</h1>
-        <p>Mikrofrontendy: Products (React) + Cart (Svelte)</p>
+        <h1>🛍️ Module Federation Store</h1>
+        <p>Host Application: React Products + Svelte Cart</p>
       </header>
 
       <main>
         <div className="microfrontend-container">
-          <div className="products-section">
+          <section className="products-section">
+            <h2 className="section-title">Products</h2>
             <div ref={productsRef} />
             {!productsLoaded && !error && (
-              <div className="loading">Ładowanie produktów...</div>
+              <div className="loading">Loading products...</div>
             )}
-          </div>
+          </section>
 
-          <div className="cart-section">
+          <section className="cart-section">
+            <h2 className="section-title">Shopping Cart</h2>
             <div ref={cartRef} />
             {!cartLoaded && !error && (
-              <div className="loading">Ładowanie koszyka...</div>
+              <div className="loading">Loading cart...</div>
             )}
-          </div>
+          </section>
         </div>
 
-        {error && <div className="error">❌ Błąd: {error}</div>}
+        {error && <div className="error">❌ Error: {error}</div>}
       </main>
 
       {(productsLoaded || cartLoaded) && (
         <div className="status">
-          {productsLoaded && <span className="status-badge">✅ Produkty</span>}
-          {cartLoaded && <span className="status-badge">✅ Koszyk</span>}
+          {productsLoaded && <span className="status-badge">✅ Products</span>}
+          {cartLoaded && <span className="status-badge">✅ Cart</span>}
         </div>
       )}
     </div>
