@@ -1,23 +1,73 @@
 <script lang="ts">
   import Cart from './lib/Cart.svelte';
   import WrapperReactSvelte from './lib/WrapperReactSvelte.svelte';
+
+  let username: string | null = null;
+
+  if (typeof window !== 'undefined') {
+    const saved = sessionStorage.getItem("username");
+    if (saved) {
+      username = saved;
+    }
+  }
+
+  window.addEventListener("message", (event) => {
+    if (event.data?.type === "login-success") {
+      username = event.data.username;
+
+      // zapisanie do sessionStorage
+      sessionStorage.setItem("username", username);
+    }
+  });
+
+  function logout() {
+    sessionStorage.removeItem("username");
+    username = null;
+  }
 </script>
 
 <main>
   <h1>🛍️ Module Federation Store Demo</h1>
-  <p class="subtitle">React Products + Svelte Shopping Cart</p>
-  
-  <div class="container">
-    <div class="products-section">
-      <WrapperReactSvelte
-        dynamicImportPromise={import('products/ProductList')}
-      />
+  <p class="subtitle">Blazor login + React Products + Svelte Shopping Cart</p>
+
+  {#if !username}
+    <iframe
+      src="http://localhost:5145/login"
+      style="width: 100%; height:300px; border-radius: 8px; border: none;">
+    </iframe>
+  {/if}
+
+  {#if username}
+    <div style="margin-bottom: 1rem; text-align:right;">
+      <strong>Logged user: {username}</strong>
+      <button
+        on:click={logout}
+        style="
+          margin-left: 1rem;
+          padding: 6px 12px;
+          background:#d9534f;
+          color:white;
+          border:none;
+          border-radius:6px;
+          cursor:pointer;
+        "
+      >
+        Logout
+      </button>
     </div>
 
-    <div class="cart-section">
-      <Cart />
+    <div class="container">
+      <div class="products-section">
+        <WrapperReactSvelte
+          dynamicImportPromise={import('products/ProductList')}
+        />
+      </div>
+
+      <div class="cart-section">
+        <Cart user={username}/>
+      </div>
     </div>
-  </div>
+  {/if}
 </main>
 
 <style>
@@ -48,7 +98,7 @@
   }
 
   .products-section {
-    width: 100%;
+    width: 100%; 
   }
 
   .cart-section {

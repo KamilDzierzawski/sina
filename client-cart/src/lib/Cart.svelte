@@ -13,6 +13,8 @@
   let showPopup = false;
   let cartStoreInstance: any = null;
 
+  export let user: string;
+
   onMount(async () => {
     const { cartStore } = await import('products/cartStore');
     cartStoreInstance = cartStore;
@@ -54,7 +56,7 @@
 </script>
 
 <div class="cart">
-  <h2>🛒 Svelte Shopping Cart</h2>
+  <h2>🛒 Svelte Shopping Cart of {user}</h2>
   
   {#if cart.length === 0}
     <p class="empty">Your cart is empty</p>
@@ -86,7 +88,7 @@
     <div class="popup" on:click|stopPropagation>
       <div class="popup-icon">✅</div>
       <h3>Purchase Complete!</h3>
-      <p>Thank you for your order.</p>
+      <p>Thank you {user} for your order.</p>
     </div>
   </div>
 {/if}

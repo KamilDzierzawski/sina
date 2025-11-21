@@ -1,0 +1,41 @@
+@page "/login"
+
+<div class="p-5"
+     style="
+        border: 2px solid #c40000;
+        width: 100%;
+        height: 300px;
+        border-radius: 8px;
+        background: #ffadad;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+     ">
+    <h2 style="color: #c40000; font-size: 1.8rem; font-weight: bold; margin-bottom: 1.2rem;">🔑 Blazor Login</h2>
+    <input placeholder="Username" @bind="LoginInput"
+           style="width: 80%; margin-bottom: 1rem;" />
+    <input placeholder="Password" type="password" @bind="PasswordInput"
+           style="width: 80%; margin-bottom: 1rem;" />
+    <button @onclick="SendLogin"
+            style="margin-bottom: 1rem; background-color: #c40000; color: white;
+                   border: none; padding: 0.5rem 1rem; border-radius: 4px; width: 80%; font-weight: bold;">
+        Login
+    </button>
+</div>
+
+
+@code {
+    private string LoginInput { get; set; } = "";
+    private string PasswordInput { get; set; } = "";
+
+    [Inject] IJSRuntime JS { get; set; } = default!;
+
+    private async Task SendLogin()
+    {
+        await JS.InvokeVoidAsync("notifyHostAboutLogin", LoginInput);
+    }
+}
