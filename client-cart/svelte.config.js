@@ -6,7 +6,6 @@ export default {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
     compilerOptions: {
-    // wymuszamy kompatybilność API komponentu (Svelte 4 style `new Component(...)`)
     compatibility: {
       componentApi: 4
     }
